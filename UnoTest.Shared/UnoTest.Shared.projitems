@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>6279c845-92f8-4333-ab99-3d213163593c</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>UnoTest.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\ExpandableImage.xaml.cs">
+      <DependentUpon>ExpandableImage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)DetailListSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ListPage.xaml.cs">
+      <DependentUpon>ListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Log.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Nodes\ImageData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Nodes\NodeData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Nodes\NoteData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TilePage.xaml.cs">
+      <DependentUpon>TilePage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\ExpandableImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)ListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)TilePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Assets\icons\arrow_back-24px.svg" />
+    <None Include="$(MSBuildThisFileDirectory)Assets\icons\arrow_back_white.svg" />
+    <None Include="$(MSBuildThisFileDirectory)Assets\icons\crop_din-24px.svg" />
+    <None Include="$(MSBuildThisFileDirectory)Assets\icons\crop_din_white.svg" />
+    <None Include="$(MSBuildThisFileDirectory)Assets\icons\folder_tab.svg" />
+    <None Include="$(MSBuildThisFileDirectory)Assets\icons\more_menu_white.svg" />
+    <None Include="$(MSBuildThisFileDirectory)Assets\icons\more_vert-24px.svg" />
+    <None Include="$(MSBuildThisFileDirectory)Assets\icons\more_vert_white.svg" />
+    <None Include="$(MSBuildThisFileDirectory)Assets\SharedAssets.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\icons\arrow_back.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\icons\arrow_back_white.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\icons\crop_din.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\icons\crop_din_white.png" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Assets\icons\folder_tab.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\icons\more_menu_white.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\icons\more_vert.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\icons\more_vert_white.png" />
+  </ItemGroup>
+</Project>
