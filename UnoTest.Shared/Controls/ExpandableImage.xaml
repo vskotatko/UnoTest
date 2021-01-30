@@ -12,5 +12,5 @@
     x:Name="EICanvas" 
     SizeChanged="OnSizeChanged"
     PaintSurface="OnPaintSurface" />
-  
+
 </UserControl>

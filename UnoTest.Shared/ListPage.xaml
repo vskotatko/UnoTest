@@ -9,30 +9,44 @@
   >
 
   <Page.Resources>
+    <ResourceDictionary>
 
-    <Style x:Key="ListViewItemStretchStyle" TargetType="ListViewItem">
-      <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-      <Setter Property="Margin" Value="0" />
-      <Setter Property="Padding" Value="0" />
-    </Style>
+      <ResourceDictionary.MergedDictionaries>
+        <!-- ResourceDictionary Source="\Themes\Generic.xaml" / -->
+      </ResourceDictionary.MergedDictionaries>
 
-    <DataTemplate x:Key="NoteItemTemplate">
-      <StackPanel Padding="10" Margin="0,0,0,1" Background="PowderBlue">
-        <TextBlock TextWrapping="Wrap" Text="{Binding Note}" />
-      </StackPanel>
-    </DataTemplate>
+      <!-- ControlTemplate x:Key="TitlebarTemplate">
+        <Border
+          Background="{TemplateBinding Background}"
+          BorderBrush="{TemplateBinding BorderBrush}"
+          BorderThickness="{TemplateBinding BorderThickness}">
+        </Border>
+      </ -->
 
-    <DataTemplate x:Key="ImageItemTemplate">
-      <StackPanel Padding="20" Margin="0,0,0,1" Background="PowderBlue">
-        <TextBlock Text="{Binding Image}" />
-      </StackPanel>
-    </DataTemplate>
+      <Style x:Key="ListViewItemStretchStyle" TargetType="ListViewItem">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+      </Style>
 
-    <local:DetailListSelector x:Key="DetailListSelector"
-      NoteItemTemplate="{StaticResource NoteItemTemplate}"
-      ImageItemTemplate="{StaticResource ImageItemTemplate}"
-    />
+      <DataTemplate x:Key="NoteItemTemplate">
+        <StackPanel Padding="10" Margin="0,0,0,1" Background="PowderBlue">
+          <TextBlock TextWrapping="Wrap" Text="{Binding Note}" />
+        </StackPanel>
+      </DataTemplate>
 
+      <DataTemplate x:Key="ImageItemTemplate">
+        <StackPanel Padding="20" Margin="0,0,0,1" Background="PowderBlue">
+          <TextBlock Text="{Binding Image}" />
+        </StackPanel>
+      </DataTemplate>
+
+      <local:DetailItemSelector x:Key="DetailItemSelector"
+        NoteItemTemplate="{StaticResource NoteItemTemplate}"
+        ImageItemTemplate="{StaticResource ImageItemTemplate}"
+      />
+
+    </ResourceDictionary>
   </Page.Resources>
 
   <!-- top level -->
@@ -45,62 +59,22 @@
     </Grid.RowDefinitions>
 
     <!-- title bar: tab and some action buttons -->
-    <Grid Grid.Row="0" Background="Black">
-      <Grid.RowDefinitions>
-        <RowDefinition Height="35" />
-      </Grid.RowDefinitions>
-
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*" /> <!-- tab -->
-        <ColumnDefinition Width="35" /> <!-- action button -->
-        <ColumnDefinition Width="35" />
-        <ColumnDefinition Width="35" />
-      </Grid.ColumnDefinitions>
-
-      <controls:ExpandableImage 
-        x:Name="Folder"
-        Grid.Column="0"
-        HorizontalAlignment="Left"
-        Source="Assets.icons.folder_tab.png"
+    <!-- TextBlock Grid.Row="0" Text="Title area" / -->
+    <controls:Titlebar 
+      x:Name="Titlebar"
+      Grid.Row="0" 
+      RoutedBackClick="OnBackClicked" 
+      RoutedPageClick="OnPageClicked" 
+      RoutedItem1Click="OnItem1Clicked" 
+      RoutedItem2Click="OnItem2Clicked" 
+      RoutedItem3Click="OnItem3Clicked" 
       />
-      <!-- Source="ms-appx:///Assets/icons/folder_tab.png" (content) -->
-      <!-- Source="UnoTest.Assets.icons.folder_tab.png" (embedded resource) -->
+    <!-- local:TitlebarTemplate / -->
 
-      <!-- Grid Grid.Column="0">
-        <Image Source="ms-appx:///Assets/icons/folder_tab.png" HorizontalAlignment="Left" />
-        <TextBlock x:Name="Folder" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="20,0,20, 0" />
-      </ -->
-
-      <Button
-        Grid.Column="1"
-        Padding="10" 
-        Click="OnBackClicked" >
-        <Image Source="ms-appx:///Assets/icons/arrow_back_white.png" />
-      </Button>
-
-      <Button
-        Grid.Column="2"
-        Padding="10"
-        Click="OnPageClicked" >
-        <Image Source="ms-appx:///Assets/icons/crop_din_white.png" />
-      </Button>
-
-      <Button
-        Grid.Column="3"
-        Padding="10" >
-        <Image Source="ms-appx:///Assets/icons/more_menu_white.png" />
-        <Button.Flyout>
-          <MenuFlyout Placement="BottomEdgeAlignedRight">
-            <MenuFlyoutItem Text="Item 1" Click="OnItem1Clicked" />
-            <MenuFlyoutItem Text="Item 2" Click="OnItem2Clicked" />
-            <MenuFlyoutItem Text="Item 3" Click="OnItem3Clicked" />
-          </MenuFlyout>
-        </Button.Flyout>
-      </Button>
-    </Grid>
-    
+    <!-- divider -->
     <Rectangle Grid.Row="1" Width="auto" Fill="Black" Height="1"/>
 
+    <!-- list -->
     <ListView Grid.Row="2"
       x:Name = "DetailList"
       Margin="0"
@@ -109,7 +83,7 @@
       ScrollViewer.VerticalScrollBarVisibility="Visible"
       Background="LightGoldenrodYellow"
       ItemsSource = "{x:Bind DetailListItems}"
-      ItemTemplateSelector = "{StaticResource DetailListSelector}">
+      ItemTemplateSelector = "{StaticResource DetailItemSelector}">
     </ListView>
     
   </Grid>

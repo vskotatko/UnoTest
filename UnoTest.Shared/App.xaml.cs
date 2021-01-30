@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
 using System.Net.Http;
+using UnoTest.Shared;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -23,6 +24,9 @@ namespace UnoTest
     public App ()
     {
       ConfigureFilters (global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory);
+#if !WINDOWS_UWP
+      Uno.UI.FeatureConfiguration.Popup.UseNativePopup = false; // native doesn't display properly in android
+#endif
 
       this.InitializeComponent ();
       this.Suspending += OnSuspending;
@@ -86,7 +90,7 @@ namespace UnoTest
           // When the navigation stack isn't restored navigate to the first page,
           // configuring the new page by passing required information as a navigation
           // parameter
-          rootFrame.Navigate (typeof (ListPage), e.Arguments);
+          rootFrame.Navigate (typeof (TilePage), e.Arguments);
         }
         // Ensure the current window is active
         window.Activate ();

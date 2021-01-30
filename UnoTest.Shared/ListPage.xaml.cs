@@ -6,10 +6,11 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using UnoTest.Shared;
+using UnoTest.Shared.Controls;
 
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
-
 namespace UnoTest
 {
   /// <summary>
@@ -93,10 +94,10 @@ namespace UnoTest
         var children = JsonConvert.DeserializeObject<Item[]>(results);
 
         // display
-        Folder.Label = "something a bit longer";
+//        Folder.Label = "something a bit longer";
 //        Folder.Label = "tiny";
 //        Folder.Label= "The globe";
-//        Folder.Label = folderData[0].description;
+        Titlebar.FolderLabel = folderData[0].description;
 
         foreach (var child in children)
           DetailListItems.Add(new NoteData { Note = child.description });
@@ -115,6 +116,8 @@ namespace UnoTest
     //-----------------------------------------------------------------------------
     void OnPageClicked (object sender, RoutedEventArgs e)
     {
+      Log.L("LP: page clicked");
+      this.Frame.Navigate(typeof(TilePage));
     }
 
     //-----------------------------------------------------------------------------

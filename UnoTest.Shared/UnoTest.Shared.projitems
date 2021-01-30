@@ -21,7 +21,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ExpandableImage.xaml.cs">
       <DependentUpon>ExpandableImage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)DetailListSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Titlebar.xaml.cs">
+      <DependentUpon>Titlebar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)DetailItemSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ListPage.xaml.cs">
       <DependentUpon>ListPage.xaml</DependentUpon>
     </Compile>
@@ -35,6 +38,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)Controls\ExpandableImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\Titlebar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -66,9 +73,18 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\icons\arrow_back_white.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\icons\crop_din.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\icons\crop_din_white.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\pictures\beach.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\pictures\covid_wedding.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\pictures\image_chair_pk.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\pictures\image_chanty.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\pictures\sidekick.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\pictures\smoke.jpg" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Assets\icons\folder_tab.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\icons\more_menu_white.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\icons\more_vert.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\icons\more_vert_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Themes\" />
   </ItemGroup>
 </Project>

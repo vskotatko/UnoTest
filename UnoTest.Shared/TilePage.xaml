@@ -2,84 +2,77 @@
   x:Class="UnoTest.Shared.TilePage"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:local="using:UnoTest.Shared"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  mc:Ignorable="d"
-  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+  xmlns:controls="using:UnoTest.Shared.Controls" 
+  xmlns:local="using:UnoTest">
+
+  <Page.Resources>
+    <ResourceDictionary>
+
+      <!--Style x:Key="GridViewItemStretchStyle" TargetType="GridViewItem">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        ItemContainerStyle="{StaticResource GridViewItemStretchStyle}"
+      </ -->
+
+      <DataTemplate x:Key="NoteItemTemplate">
+        <StackPanel Padding="10" Margin="0,0,0,1" Background="PowderBlue" Width="200">
+          <TextBlock TextWrapping="Wrap" Text="{Binding Note}" />
+        </StackPanel>
+      </DataTemplate>
+
+      <DataTemplate x:Key="ImageItemTemplate">
+        <Grid Padding="5" Margin="0,0,0,1"  Background="PowderBlue">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="*"  />
+            <RowDefinition Height="Auto" />
+          </Grid.RowDefinitions>
+
+          <Image Grid.Row="0" Source="{Binding FileName}" Stretch="UniformToFill" />
+          <TextBlock Grid.Row="1" Text="{Binding Label}" />
+        </Grid>
+      </DataTemplate>
+
+      <local:DetailItemSelector x:Key="DetailItemSelector"
+        NoteItemTemplate="{StaticResource NoteItemTemplate}"
+        ImageItemTemplate="{StaticResource ImageItemTemplate}"
+      />
+
+    </ResourceDictionary>
+  </Page.Resources>
 
   <Grid>
 
     <Grid.RowDefinitions>
-      <RowDefinition Height="Auto"  />
-      <!-- title bar-->
-      <RowDefinition Height="*" />
-      <!-- list -->
+      <RowDefinition Height="Auto"  />  <!-- title bar-->
+      <RowDefinition Height="*" />  <!-- grid -->
     </Grid.RowDefinitions>
 
-    <!-- MAKE TEMPLATE -->
     <!-- title bar: tab and some action buttons -->
-    <Grid Grid.Row="0">
-      <Grid.RowDefinitions>
-        <RowDefinition Height="35" />
-      </Grid.RowDefinitions>
+    <controls:Titlebar 
+      x:Name = "Titlebar"
+      Grid.Row="0" 
+      RoutedPageClick="OnPageClicked" 
+      />
 
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*" />
-        <!-- tab -->
-        <ColumnDefinition Width="35" />
-        <!-- action button -->
-        <ColumnDefinition Width="35" />
-        <ColumnDefinition Width="35" />
-      </Grid.ColumnDefinitions>
-
-      <!-- controls:ExpandableImage 
-        Grid.Column="0"
-        Source="ms-appx:///Assets/icons/folder_tab.png" 
-      / -->
-
-      <Grid Grid.Column="0">
-        <Image Source="ms-appx:///Assets/icons/folder_tab.png" HorizontalAlignment="Left" />
-        <TextBlock x:Name="Folder" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="20,0,20, 0" />
-      </Grid>
-
-      <Button
-        Grid.Column="1"
-        Padding="10" 
-        Click="OnBackClicked" >
-        <Image Source="ms-appx:///Assets/icons/arrow_back_white.png" />
-      </Button>
-
-      <Button
-        Grid.Column="2"
-        Padding="10"
-        Click="OnPageClicked" >
-        <Image Source="ms-appx:///Assets/icons/crop_din_white.png" />
-      </Button>
-
-      <Button
-        Grid.Column="3"
-        Padding="10" >
-        <Image Source="ms-appx:///Assets/icons/more_menu_white.png" />
-        <Button.Flyout>
-          <MenuFlyout Placement="BottomEdgeAlignedRight">
-            <MenuFlyoutItem Text="Item 1" Click="OnItem1Clicked" />
-            <MenuFlyoutItem Text="Item 2" Click="OnItem2Clicked" />
-            <MenuFlyoutItem Text="Item 3" Click="OnItem3Clicked" />
-          </MenuFlyout>
-        </Button.Flyout>
-      </Button>
-    </Grid>
-
-    <GridView Grid.Row="1"
-      x:Name = "DetailList"
+    <!-- GridView -->
+    <GridView Grid.Row="2"
+      x:Name = "DetailGrid"
       Margin="0"
       Padding="0"
-      ItemContainerStyle="{StaticResource ListViewItemStretchStyle}"
       ScrollViewer.VerticalScrollBarVisibility="Visible"
       Background="LightGoldenrodYellow"
-      ItemsSource = "{x:Bind DetailListItems}"
-      ItemTemplateSelector = "{StaticResource DetailListSelector}">
+      ItemsSource = "{x:Bind DetailGridItems}"
+      ItemTemplateSelector = "{StaticResource DetailItemSelector}"
+      SizeChanged="OnSizeChanged">
+
+      <GridView.ItemsPanel>
+        <ItemsPanelTemplate>
+          <ItemsWrapGrid  Orientation="Horizontal" />
+        </ItemsPanelTemplate>
+      </GridView.ItemsPanel>
     </GridView>
 
   </Grid>

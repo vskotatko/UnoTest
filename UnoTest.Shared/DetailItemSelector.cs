@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace UnoTest
 {
-  class DetailListSelector : DataTemplateSelector
+  class DetailItemSelector : DataTemplateSelector
   {
     public DataTemplate NoteItemTemplate { get; set; }
     public DataTemplate ImageItemTemplate { get; set; }

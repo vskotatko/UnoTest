@@ -1,15 +1,10 @@
 ﻿using SkiaSharp;
-using SkiaSharp.Views;
 using SkiaSharp.Views.UWP;
 using System;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Reflection;
 using UnoTest.Nodes;
-using Windows.Foundation;
 using Windows.Graphics.Display;
-using Windows.Storage;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
