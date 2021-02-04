@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="b6f7d1f0-d460-43ea-82b7-5fe43cdf8680"
-    Publisher="CN=Peri Hartman"
-    Version="1.0.0.0" />
+    Name="19201vskotatko.vskotatko-unotest"
+    Publisher="CN=8FCDB78B-5491-466C-8747-507BD7F11989"
+    Version="1.0.5.0" />
 
-  <mp:PhoneIdentity PhoneProductId="fc397cca-635d-4d36-96b0-3905f0e05409" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="132ba053-8471-4620-8802-6de0a2379e46" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>UnoTest</DisplayName>
-    <PublisherDisplayName>UnoTest</PublisherDisplayName>
+    <DisplayName>vskotatko-unotest</DisplayName>
+    <PublisherDisplayName>vskotatko</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -32,7 +32,7 @@
       Executable="UnoTest.exe"
       EntryPoint="UnoTest.App">
       <uap:VisualElements
-        DisplayName="UnoTest"
+        DisplayName="vskotatko-unotest"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
         Description="UnoTest"

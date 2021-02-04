@@ -30,9 +30,23 @@
       </Style>
 
       <DataTemplate x:Key="NoteItemTemplate">
-        <StackPanel Padding="10" Margin="0,0,0,1" Background="PowderBlue">
-          <TextBlock TextWrapping="Wrap" Text="{Binding Note}" />
-        </StackPanel>
+        <Grid Padding="0" Margin="0,0,0,1" Background="PowderBlue">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />  <!-- note -->
+            <ColumnDefinition Width="35" />  <!-- menu button -->
+          </Grid.ColumnDefinitions>
+          <TextBox Name="Note" Grid.Column="0" Padding="10" TextWrapping="Wrap" IsReadOnly="True" Text="{Binding Note}" />
+          <Button Grid.Column ="1" Width="35" Padding="10" Background="Transparent">
+            <Image Source="ms-appx:///Assets/icons/more_menu_white.png" />
+            <Button.Flyout>
+              <MenuFlyout Placement="BottomEdgeAlignedRight">
+                <MenuFlyoutItem Text="Edit" Click="OnItemEdit" />
+                <MenuFlyoutItem Text="Delete" Click="OnItemDelete" />
+              </MenuFlyout>
+            </Button.Flyout>
+          </Button>
+
+        </Grid>
       </DataTemplate>
 
       <DataTemplate x:Key="ImageItemTemplate">

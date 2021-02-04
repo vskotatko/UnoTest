@@ -46,14 +46,17 @@
   <Grid>
 
     <Grid.RowDefinitions>
+      <RowDefinition Height="40"  />
       <RowDefinition Height="Auto"  />  <!-- title bar-->
       <RowDefinition Height="*" />  <!-- grid -->
     </Grid.RowDefinitions>
 
+    <TextBlock Grid.Row="0" Text="asdf" />
+
     <!-- title bar: tab and some action buttons -->
     <controls:Titlebar 
       x:Name = "Titlebar"
-      Grid.Row="0" 
+      Grid.Row="1" 
       RoutedPageClick="OnPageClicked" 
       />
 

@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using UnoTest.Shared;
 using UnoTest.Shared.Controls;
+using Windows.UI.Popups;
+using Windows.UI.Xaml.Media;
 
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -38,8 +40,8 @@ namespace UnoTest
 /*
       DetailListItems.Add(new NoteData { Note = "As Donald Trump tried to claim victory before votes were tallied in critical battleground states, the Biden campaign was privately telling supporters not to panic, even as it prepared for pitched legal battles with the president." });
       DetailListItems.Add(new NoteData { Note = "In a Zoom call with donors Wednesday, the aides told the group that Joe Biden was on pace to reach 270 electoral votes in short order, beaming over victories in the Midwestern states that Donald Trump flipped four years ago." });
-      //      DetailListItems.Add(new ImageData { FileName = "image_chair_pk.jpg" });
-      //      DetailListItems.Add(new ImageData { FileName = "image_chanty.jpg" });
+      // DetailListItems.Add(new ImageData { FileName = "image_chair_pk.jpg" });
+      // DetailListItems.Add(new ImageData { FileName = "image_chanty.jpg" });
       DetailListItems.Add(new NoteData { Note = "Item 3" });
       DetailListItems.Add(new NoteData { Note = "Item 4" });
       DetailListItems.Add(new NoteData { Note = "Item 5" });
@@ -107,10 +109,44 @@ namespace UnoTest
 //        Debug.WriteLine("http exception: ", e.ToString());
       }
     }
+#if false
+    //-----------------------------------------------------------------------------
+    private void ListView_RightTapped(object sender, RightTappedRoutedEventArgs e)
+    {
+      ListView listView = (ListView)sender;
+      allContactsMenuFlyout.ShowAt(listView, e.GetPosition(listView));
+      var a = ((FrameworkElement)e.OriginalSource).DataContext;
+    }
+#endif
+    //-----------------------------------------------------------------------------
+    async void OnItemEdit(object sender, RoutedEventArgs e)
+    {
+      Log.L("LP OnItemEdit");
+      DependencyObject element = sender as DependencyObject;
+      while (element != null)
+        element = VisualTreeHelper.GetParent (element);
+//      FrameworkElement parent = button.Parent as FrameworkElement;
+//      TextBox note = parent.FindName ("Note") as TextBox;
+//      note.IsReadOnly = false;
+    }
 
     //-----------------------------------------------------------------------------
-    void OnBackClicked (object sender, RoutedEventArgs e)
+    async void OnItemDelete(object sender, RoutedEventArgs e)
     {
+      Log.L("LP OnItemDelete");
+    }
+
+    //-----------------------------------------------------------------------------
+    async void OnBackClicked (object sender, RoutedEventArgs e)
+    {
+      MessageDialog dialog = new MessageDialog("Back clicked");
+      dialog.Commands.Add(new UICommand("ok", null));
+      var cmd = await dialog.ShowAsync();
+
+      if (cmd.Label == "Yes")
+      {
+        // do something
+      }
     }
 
     //-----------------------------------------------------------------------------
